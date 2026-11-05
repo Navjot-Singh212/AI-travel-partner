@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import {
-  callGemini25Flash,
+  callGeminiFlash,
   extractJsonFromText,
   HeritageAnalysisResult,
 } from "@/lib/gemini";
@@ -50,8 +50,8 @@ Respond ONLY with a valid JSON object strictly matching this schema:
     }
     userPromptText += ` Identify the structure or architectural style, assess certainty, describe the visible features, and explain its significance without fabricating unverified history.`;
 
-    // 3. Multimodal call to Gemini 2.5 Flash
-    const { text, sources } = await callGemini25Flash({
+    // 3. Multimodal call to Gemini 3.5 Flash
+    const { text, sources } = await callGeminiFlash({
       systemInstruction,
       contents: [
         {

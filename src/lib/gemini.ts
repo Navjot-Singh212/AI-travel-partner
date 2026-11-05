@@ -67,9 +67,9 @@ export function getGeminiApiKey(): string {
 }
 
 /**
- * Low-level call to Gemini 2.5 Flash with free search grounding
+ * Low-level call to Gemini Flash (default: gemini-3.5-flash) with free search grounding
  */
-export async function callGemini25Flash(params: {
+export async function callGeminiFlash(params: {
   systemInstruction?: string;
   contents: Array<{
     role?: string;
@@ -81,7 +81,8 @@ export async function callGemini25Flash(params: {
   enableSearchGrounding?: boolean;
 }): Promise<{ text: string; sources: GroundingSource[] }> {
   const apiKey = getGeminiApiKey();
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+  const model = process.env.GEMINI_MODEL?.trim() || "gemini-3.5-flash";
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
 
   const requestBody: Record<string, unknown> = {
     contents: params.contents,
@@ -132,7 +133,7 @@ export async function callGemini25Flash(params: {
     }
     if (status === 400 && message.toLowerCase().includes("search")) {
       // If search grounding is unavailable on this free project tier, retry without search tool
-      return callGemini25Flash({ ...params, enableSearchGrounding: false });
+      return callGeminiFlash({ ...params, enableSearchGrounding: false });
     }
 
     throw new Error(`Gemini API error (${status}): ${message}`);
@@ -182,3 +183,7 @@ export function extractJsonFromText<T>(text: string): T {
   }
   return JSON.parse(cleaned) as T;
 }
+
+// Backward compatibility alias
+export const callGemini25Flash = callGeminiFlash;
+

@@ -102,7 +102,7 @@ export default function Navbar() {
                 <li>Do not attach a credit card or Google Cloud billing account.</li>
               </ol>
               <div className="pt-2 border-t border-stone-200 text-[11px] text-emerald-800">
-                ✓ Explore Local runs exclusively on free-tier <code>gemini-2.5-flash</code> with zero paid tool calls or paid Maps lookups. If quotas are reached, it pauses and notifies you without overages.
+                ✓ Explore Local runs on free-tier <code>gemini-3.5-flash</code> with zero paid tool calls or paid Maps lookups. If quotas are reached, it pauses and notifies you without overages.
               </div>
             </div>
 

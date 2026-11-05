@@ -49,7 +49,7 @@ export default function Home() {
               Free Tier Safeguard ($0 Cost Limit)
             </span>
             <span>&bull;</span>
-            <span>Powered by Gemini 2.5 Flash &amp; Web Speech API</span>
+            <span>Powered by Gemini 3.5 Flash &amp; Web Speech API</span>
           </div>
         </div>
 

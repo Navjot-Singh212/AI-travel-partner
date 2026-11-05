@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import {
-  callGemini25Flash,
+  callGeminiFlash,
   extractJsonFromText,
   VibePlaceResult,
   TripPlannerResult,
@@ -53,7 +53,7 @@ Respond ONLY with a valid JSON object matching this schema:
 
       const userPrompt = `Find real, grounded places in "${cleanArea}" that evoke a "${cleanVibe}" vibe. Return 3 to 4 distinct real places.`;
 
-      const { text, sources } = await callGemini25Flash({
+      const { text, sources } = await callGeminiFlash({
         systemInstruction,
         contents: [{ role: "user", parts: [{ text: userPrompt }] }],
         enableSearchGrounding: true,
@@ -133,7 +133,7 @@ Respond ONLY with a valid JSON object matching this schema:
 
       const userPrompt = `Create a realistic ${days}-day itinerary for ${cleanDest}. Pace: ${travelPace}. Interests: ${interestList}.`;
 
-      const { text, sources } = await callGemini25Flash({
+      const { text, sources } = await callGeminiFlash({
         systemInstruction,
         contents: [{ role: "user", parts: [{ text: userPrompt }] }],
         enableSearchGrounding: true,

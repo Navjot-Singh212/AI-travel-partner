@@ -299,7 +299,7 @@ export default function HeritageLens() {
                 {isAnalyzing ? (
                   <>
                     <RefreshCw className="w-4 h-4 animate-spin" />
-                    <span>Analyzing Architectural Heritage with Gemini 2.5 Flash...</span>
+                    <span>Analyzing Architectural Heritage with Gemini 3.5 Flash...</span>
                   </>
                 ) : (
                   <>
